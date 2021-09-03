@@ -1,5 +1,126 @@
+@import url("https://fonts.googleapis.com/css?family=Roboto");
+
+/* Global Styles */
 :root {
+  --bg-color: #202040;
+  --color-two: #202060;
+  --color-three: #602080;
+  --color-four: #b030b0;
+  --text-color: #fff;
+}
+
+* {
   box-sizing: border-box;
   margin: 0;
   padding: 0;
+
+  font-family: "Roboto", sans-serif;
+  /* font-size: 1rem; */
+  line-height: 1.6;
+}
+
+body {
+  background-color: var(--bg-color);
+  color: var(--text-color);
+
+  height: 100vh;
+  width: 100vw;
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.grid-2 {
+  max-width: 1100px;
+  margin: auto;
+  overflow: hidden;
+  padding: 0 2rem;
+  background-color: var(--color-two);
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  grid-gap: 2rem;
+}
+
+.grid-2 h2 {
+  padding: 12px;
+  text-align: center;
+}
+
+.grid-3 {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  grid-gap: 1rem;
+  padding: 12px;
+}
+
+.movie-card {
+  display: flex;
+  flex-direction: column;
+  text-align: center;
+  background-color: var(--color-three);
+  padding: 12px;
+  border-radius: 5px;
+}
+
+/* .movie-card:hover {
+  box-shadow: 0px 5px 10px 2px rgba(176, 48, 176, 0.5);
+} */
+
+.movie-card h3 {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 40px;
+}
+
+.movie-card img {
+  margin: 10px 0px;
+  height: 164px;
+  width: 124px;
+  object-fit: fill;
+}
+
+.search-form {
+  padding: 12px;
+}
+
+.search-form input[type="text"] {
+  height: 2rem;
+  width: 90%;
+  border-top-left-radius: 10px;
+  border-bottom-left-radius: 10px;
+  border: none;
+  outline: none;
+  padding: 4px 12px;
+  font: 600 14px/14px "Roboto", "sans-serif";
+  text-transform: uppercase;
+}
+
+.search-form button {
+  height: 2rem;
+  width: 10%;
+  border-top-right-radius: 10px;
+  border-bottom-right-radius: 10px;
+  outline: none;
+  background-color: var(--color-four);
+  border: none;
+  color: var(--text-color);
+  cursor: pointer;
+}
+
+.search-form button:hover {
+  background-color: var(--color-three);
+}
+
+.action-button {
+  border: none;
+  background-color: transparent;
+  color: var(--text-color);
+  padding: 4px;
+  cursor: pointer;
+}
+
+.action-button:hover {
+  transform: scale(1.5);
 }
