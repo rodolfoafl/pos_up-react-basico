@@ -1,73 +1,54 @@
+import { useEffect, useState } from "react";
 import "./App.css";
+import MovieList from "./components/MovieList";
+import SearchList from "./components/SearchList";
+import SearchForm from "./components/SearchForm";
 
 const App = () => {
+  const [movies, setMovies] = useState(
+    localStorage.getItem("movies")
+      ? JSON.parse(localStorage.getItem("movies"))
+      : []
+  );
+  const [searchResult, setSearchResult] = useState([]);
+
+  const removeFromList = (movieObj) => {
+    setMovies(movies.filter((m) => m.Title !== movieObj.Title));
+    localStorage.setItem("movies", JSON.stringify(movies));
+    return alert("Filme removido com sucesso!");
+  };
+
+  const addToList = (movieObj) => {
+    movieObj.onList = true;
+
+    if (movies?.length > 0) {
+      if (!movies?.find((m) => m.Title === movieObj.Title)) {
+        setMovies([...movies, movieObj]);
+        localStorage.setItem("movies", JSON.stringify(movies));
+        return alert("Filme adicionado com sucesso!");
+      }
+      return alert("Filme já existente na lista!");
+    } else {
+      setMovies([...movies, movieObj]);
+      localStorage.setItem("movies", JSON.stringify(movies));
+      return alert("Filme adicionado com sucesso!");
+    }
+  };
+
+  useEffect(() => {
+    localStorage.setItem("movies", JSON.stringify(movies));
+  }, [movies]);
+
   return (
     <div className="grid-2">
       <div className="left">
         <h2>LISTA DE FILMES PREFERIDOS</h2>
-        <div className="grid-3">
-          <div className="movie-card">
-            <h3>Blade Runner</h3>
-            <img
-              src="https://upload.wikimedia.org/wikipedia/pt/b/bb/BladeRunner-P%C3%B4ster.jpg"
-              alt=""
-            />
-            <button className="action-button">
-              <i class="fas fa-trash-alt"></i>
-            </button>
-          </div>
-          <div className="movie-card">
-            <h3>Blade Runner</h3>
-            <img
-              src="https://upload.wikimedia.org/wikipedia/pt/b/bb/BladeRunner-P%C3%B4ster.jpg"
-              alt=""
-            />
-            <button className="action-button">
-              <i class="fas fa-trash-alt"></i>
-            </button>
-          </div>
-          <div className="movie-card">
-            <h3>Blade Runner</h3>
-            <img
-              src="https://upload.wikimedia.org/wikipedia/pt/b/bb/BladeRunner-P%C3%B4ster.jpg"
-              alt=""
-            />
-            <button className="action-button">
-              <i class="fas fa-trash-alt"></i>
-            </button>
-          </div>
-          <div className="movie-card">
-            <h3>Blade Runner</h3>
-            <img
-              src="https://upload.wikimedia.org/wikipedia/pt/b/bb/BladeRunner-P%C3%B4ster.jpg"
-              alt=""
-            />
-            <button className="action-button">
-              <i class="fas fa-trash-alt"></i>
-            </button>
-          </div>
-        </div>
+        <MovieList movies={movies} action={removeFromList} />
       </div>
       <div className="right">
         <h2>BUSCA DE FILMES</h2>
-        <form className="search-form">
-          <input type="text" name="" />
-          <button>
-            <i className="fas fa-search"></i>
-          </button>
-        </form>
-        <div className="grid-3">
-          <div className="movie-card">
-            <h3>Blade Runner</h3>
-            <img
-              src="https://upload.wikimedia.org/wikipedia/pt/b/bb/BladeRunner-P%C3%B4ster.jpg"
-              alt=""
-            />
-            <button className="action-button">
-              <i class="fas fa-plus-circle"></i>
-            </button>
-          </div>
-        </div>
+        <SearchForm setSearchResult={setSearchResult} />
+        <SearchList movies={searchResult} action={addToList} />
       </div>
     </div>
   );
