@@ -12,11 +12,7 @@
 
 - Clone o projeto para seu ambiente local.
 - Execute `npm install` ou `yarn install` para instalar as dependencias.
-<<<<<<< HEAD
 - Execute `npm start` ou `yarn start` para iniciar a aplicação.
-=======
-- Execute `npm start` para iniciar a aplicação.
->>>>>>> 3b1e8a1d4bfbb92dcfda6ddc3c2d10b0c6e8271c
 
 ## Documentação
 
