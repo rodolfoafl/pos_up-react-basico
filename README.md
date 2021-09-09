@@ -4,6 +4,10 @@
 - Utilizando-se da API do [OMDb API](https://www.omdbapi.com) para realizar a busca pelos filmes.
 - O aplicativo utiliza também o localStorage para manter as informações salvas na sessão do usúario.
 
+## Deploy Vercel
+
+- https://movie-list-app-seven.vercel.app
+
 ## Requisitos
 
 - [Node.js](https://nodejs.org/en/): v14.17.0
